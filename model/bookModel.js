@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize  = require("../config/database");
+const OrderItem = require("./orderItemModel")
 
 
 const Book = sequelize.define('Book', {
@@ -22,8 +23,10 @@ const Book = sequelize.define('Book', {
     },
   });
 
-Book.hasMany(OrderItem);
-OrderItem.belongsTo(Book);
+  Book.hasMany(OrderItem, {
+    foreignKey: 'BookID', // Foreign key in the OrderItem model
+    as: 'orderItems', // Alias to access the association
+  });
 
 
   module.exports = Book;

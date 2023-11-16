@@ -1,5 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize  = require("../config/database");
+const OrderItem = require("./orderItemModel")
+const Payment = require("./paymentModel")
+
 
 
 const Order = sequelize.define('Order', {
@@ -18,9 +21,22 @@ const Order = sequelize.define('Order', {
     },
   });
 
-  Order.hasMany(OrderItem);
-  OrderItem.belongsTo(Order);
+  Order.hasMany(OrderItem, {
+    foreignKey: 'orderID',
+    as: 'orderItems',
+  });
+
+  OrderItem.belongsTo(Order, {
+    foreignKey: 'orderID',
+    as: 'order',
+  });
   
-  Order.hasOne(Payment);
-  Payment.belongsTo(Order);
+  Order.hasOne(Payment, {
+    foreignKey: 'orderID',
+    as: 'payment',
+  });
+  Payment.belongsTo(Order, {
+    foreignKey: 'orderID',
+    as: 'order',
+  });
   module.exports = Order;
