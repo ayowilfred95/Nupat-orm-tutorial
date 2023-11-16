@@ -18,5 +18,9 @@ const Order = sequelize.define('Order', {
     },
   });
 
-
+  Order.hasMany(OrderItem);
+  OrderItem.belongsTo(Order);
+  
+  Order.hasOne(Payment);
+  Payment.belongsTo(Order);
   module.exports = Order;

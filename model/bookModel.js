@@ -22,5 +22,8 @@ const Book = sequelize.define('Book', {
     },
   });
 
+Book.hasMany(OrderItem);
+OrderItem.belongsTo(Book);
+
 
   module.exports = Book;

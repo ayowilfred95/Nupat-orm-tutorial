@@ -30,6 +30,7 @@ const Customer = sequelize.define('Customer', {
     },
   });
 
-
+  Customer.hasMany(Order);
+  Order.belongsTo(Customer);
 
   module.exports = Customer;
