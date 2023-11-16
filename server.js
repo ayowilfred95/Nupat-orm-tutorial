@@ -1,13 +1,13 @@
 const express = require("express");
 const sequelize = require("./config/database");
 require("dotenv").config();
-const router = require("./route/userRoute")
+const router = require("./route/adminRoute");
 
 const app = express();
 const port = process.env.PORT || 5000;
-app.use(express.json())
+app.use(express.json());
 
-app.use(router)
+app.use(router);
 
 sequelize
   .authenticate()
@@ -15,5 +15,5 @@ sequelize
     app.listen(port, () => console.log(`Listening on port ${port}`));
   })
   .catch((error) => {
-    console.log(error);
+    console.log(error.message);
   });
