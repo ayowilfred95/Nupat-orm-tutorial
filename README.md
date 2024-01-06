@@ -1,3 +1,6 @@
+please check the Project.md file for project details and description.
+
+
 To start this project
 ## Run "npm install" to install all the dependencies
 
